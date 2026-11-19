@@ -12,16 +12,17 @@ FEED_URLS = {
     "J": "https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-jz",
 }
 
-# MTA Static GTFS feed URLs
+# MTA Static GTFS feed URLs (https://www.mta.info/developers; S3 bucket since ~2025)
+_STATIC_GTFS_BASE = "https://rrgtfsfeeds.s3.amazonaws.com"
 STATIC_GTFS_URLS = {
-    "subway": "http://web.mta.info/developers/data/nyct/subway/google_transit.zip",
-    "bus_bronx": "http://web.mta.info/developers/data/nyct/bus/google_transit_bronx.zip",
-    "bus_brooklyn": "http://web.mta.info/developers/data/nyct/bus/google_transit_brooklyn.zip",
-    "bus_manhattan": "http://web.mta.info/developers/data/nyct/bus/google_transit_manhattan.zip",
-    "bus_queens": "http://web.mta.info/developers/data/nyct/bus/google_transit_queens.zip",
-    "bus_staten_island": "http://web.mta.info/developers/data/nyct/bus/google_transit_staten_island.zip",
+    "subway": f"{_STATIC_GTFS_BASE}/gtfs_subway.zip",
+    "bus_bronx": f"{_STATIC_GTFS_BASE}/gtfs_bx.zip",
+    "bus_brooklyn": f"{_STATIC_GTFS_BASE}/gtfs_b.zip",
+    "bus_manhattan": f"{_STATIC_GTFS_BASE}/gtfs_m.zip",
+    "bus_queens": f"{_STATIC_GTFS_BASE}/gtfs_q.zip",
+    "bus_staten_island": f"{_STATIC_GTFS_BASE}/gtfs_si.zip",
     # MTA Bus Company routes (e.g. Q18, Q52+, BxM1, QM2) are not in the NYCT borough feeds
-    "bus_company": "http://web.mta.info/developers/data/busco/google_transit.zip",
+    "bus_company": f"{_STATIC_GTFS_BASE}/gtfs_busco.zip",
 }
 
 # Static GTFS feeds searched for bus routes and stop names, as (feed_name, url) tuples

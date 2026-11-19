@@ -119,6 +119,12 @@ class GTFSCache:
                 async with session.get(url, timeout=aiohttp.ClientTimeout(total=timeout)) as response:
                     response.raise_for_status()
                     content = await response.read()
+                    content_type = response.headers.get("Content-Type", "unknown")
+                    if not zipfile.is_zipfile(io.BytesIO(content)):
+                        raise ValueError(
+                            f"GTFS download from {url} did not return a ZIP file "
+                            f"(Content-Type: {content_type})"
+                        )
 
                 # Write to temp file first, then atomically replace to avoid
                 # partial/corrupted files if interrupted mid-write
